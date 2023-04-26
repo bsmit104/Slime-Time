@@ -23,50 +23,60 @@
             }
             preload(){
                 this.load.path = "./assets/";
-                //this.load.spritesheet('logosmall', 'logosmall.png', {
-                //    frameWidth: 100,
-                //    frameHeight: 100
-                //});
-                this.load.image('logoew', 'logoew.gif');
+                this.load.spritesheet('logosmall', 'logosmall.png', {
+                    frameWidth: 100,
+                    frameHeight: 100
+                });
+                //this.load.image('logoew', 'logoew.gif');
             }
             create() {
                 //this.add.backgroundColor: 0xFFFF;
                 this.cameras.main.setBackgroundColor('#ffffff');
 
-                this.imageObject = this.add.image(
-                    320,//x
-                    240,//y
-                    'logoew',//imagename
-                )
+                //this.imageObject = this.add.image(
+                //    320,//x
+                //    240,//y
+                //    'logoew',//imagename
+                //)
 
             /////////////////animated///////////////////
-               // this.imageObject2 = this.add.sprite(
-               //     320,//x
-               //     240,//y
-               //     'logosmall',//imagename
-               // );
-               // //this.imageObject2.setScale(0.8); //resize
-               // this.anims.create({
-               //     key: 'logosmall',
-               //     frames: this.anims.generateFrameNumbers('logosmall', {
-               //         start: 0,
-               //         end: 7
-               //     }),
-               //     frameRate: 10,
-               //     repeat: 0
-               // });
-               // this.imageObject2.anims.play('logosmall', true);
+                this.imageObject2 = this.add.sprite(
+                    320,//x
+                    240,//y
+                    'logosmall',//imagename
+                );
+                this.imageObject2.setScale(5); //resize
+                this.anims.create({
+                    key: 'logosmall',
+                    frames: this.anims.generateFrameNumbers('logosmall', {
+                        start: 0,
+                        end: 16
+                    }),
+                    frameRate: 10,
+                    repeat: 0
+                });
+                this.imageObject2.anims.play('logosmall', true);
 
                 //let logo = this.add.image(0, 0, 'logo');
                 //logo.setPosition(this.cameras.main.centerX, this.cameras.main.centerY);
-                this.imageObject.setScale(4) //resize
-                this.tweens.add({
-                    targets: this.imageObject,
-                    alpha:0,
-                    duration: 3000,
-                    //ease: 'Linear',
-                    repeat: 0,
-                });
+
+                //this.imageObject.setScale(4) //resize
+                this.time.delayedCall(2000, () => {
+                    this.tweens.add({
+                        targets: this.imageObject2,
+                        alpha:0,
+                        duration: 3000,
+                        //ease: 'Linear',
+                        repeat: 0,
+                    });
+                }, null, this);
+                //this.tweens.add({
+                //    targets: this.imageObject2,
+                //    alpha:0,
+                //    duration: 3000,
+                //    //ease: 'Linear',
+                //    repeat: 0,
+                //});
 
                 this.input.on('pointerdown', () => this.scene.start('scene2'));
             }
@@ -81,6 +91,7 @@
                 //this.load.image = "logo.png";
                 this.load.image('slimeking', 'slimeking.png');
                 this.load.image('slimeleak', 'slimeleak.png');
+                this.load.image('slimecrowd', 'slimecrowd.png');
             }
             create() {
                 this.cameras.main.setBackgroundColor('0x2a5825');
@@ -90,15 +101,24 @@
                 'slimeleak',//imagename
                 )
                 this.imageObject.setScale(1.5) //resize
+                
+                this.image3Object = this.add.image(
+                    320,//x
+                    660,//y
+                    'slimecrowd',//imagename
+                )
+                this.image3Object.setScale(3.4) //resize
+
 
                 //this.add.text(190, 240, "IN A WORLD FULL OF SLIMES");
                 this.textObject = this.add.text(
-                    170, //x
-                    240,//y
-                    "IN A WORLD FULL OF SLIMES", //text
+                    130, //x
+                    190,//y
+                    "IN A WORLD\nFULL OF SLIMES", //text
                     {
-                        font: "20px Arial",
+                        font: "60px Impact",
                         color: "#ff7700",
+                        align: "center"
                     } //style
                 );
                 
@@ -112,12 +132,13 @@
                         //this.time.delayedCall(1000, () => {
                             //this.add.text2(190, 240, "ONLY ONE CAN BE KING SLIME");
                             this.text2Object = this.add.text(
-                                170, //x
-                                240,//y
-                                "ONLY ONE CAN BE KING SLIME", //text
+                                130, //x
+                                190,//y
+                                "ONLY ONE CAN BE\nKING SLIME", //text
                                 {
-                                    font: "20px Arial",
+                                    font: "60px Impact",
                                     color: "#ff7700",
+                                    align: "center"
                                 } //style
                             );
                             this.tweens.add({
@@ -135,10 +156,11 @@
                                     'slimeking',//imagename
                                 )
                                 this.imageObject.setScale(1.5) //resize
+                                this.image2Object.setScale(2) //resize
                                 this.tweens.add({
                                     targets: this.image2Object,
                                     alpha:0,
-                                    duration: 4000,
+                                    duration: 3000,
                                     repeat: 0,
                                 });
                                 //}, null, this);
@@ -250,6 +272,11 @@
                         this.time.delayedCall(500, () => {
                             this.graphics.fillEllipse(450, 200, 200, 100, 5000);   // x, y, width, height, smoothness
                         }, null, this);
+                        this.time.delayedCall(500, () => {
+                            let text = "That's me!";
+                            let style = { font: "32px Arial", fill: "#000000"};
+                            let textObject = this.add.text(380, 190, text, style);
+                        }, null, this);
                         //onComplete: () => {
                         //    //fade speecg instant
                         //    this.tweens.add({
@@ -283,6 +310,7 @@
                 this.load.path = "./assets/";
                 //this.load.image = "logo.png";
                 this.load.image('slimeleak', 'slimeleak.png');
+                this.load.image('Slimetime', 'Slimetime.png');
                 //this.load.image('slimR', 'slimR.gif');
                 //this.load.spritesheet('slimR', 'slimR.gif', {
                 this.load.spritesheet('yuh2', 'yuh2.png', {
@@ -325,15 +353,18 @@
                     ease: 'Linear',
                     repeat: 0,
                     onComplete: () => {
-                        this.text3Object = this.add.text(
-                                170, //x
-                                240,//y
-                                "PLAY", //text
-                                {
-                                    font: "20px Arial",
-                                    color: "#ff7700",
-                                } //style
-                            );
+                    this.imageObject = this.add.image(
+                    400,//x
+                    200,//y
+                    'Slimetime',//imagename
+                    )
+                    this.imageObject.setScale(1) //resize
+                        let text = this.add.text(50, 230, "PLAY\nSETTINGS\nQUIT", {
+                            fontSize: '64px',
+                            fill: '#000000',
+                            wordWrap: true,
+                            //wordWrapWidth: 400
+                        });
                     }
                 });
             }
