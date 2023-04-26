@@ -23,17 +23,40 @@
             }
             preload(){
                 this.load.path = "./assets/";
-                //this.load.image = "logo.png";
-                this.load.image('logo', 'logo.gif');
+                //this.load.spritesheet('logosmall', 'logosmall.png', {
+                //    frameWidth: 100,
+                //    frameHeight: 100
+                //});
+                this.load.image('logoew', 'logoew.gif');
             }
             create() {
                 //this.add.backgroundColor: 0xFFFF;
                 this.cameras.main.setBackgroundColor('#ffffff');
+
                 this.imageObject = this.add.image(
                     320,//x
                     240,//y
-                    'logo',//imagename
+                    'logoew',//imagename
                 )
+
+            /////////////////animated///////////////////
+               // this.imageObject2 = this.add.sprite(
+               //     320,//x
+               //     240,//y
+               //     'logosmall',//imagename
+               // );
+               // //this.imageObject2.setScale(0.8); //resize
+               // this.anims.create({
+               //     key: 'logosmall',
+               //     frames: this.anims.generateFrameNumbers('logosmall', {
+               //         start: 0,
+               //         end: 7
+               //     }),
+               //     frameRate: 10,
+               //     repeat: 0
+               // });
+               // this.imageObject2.anims.play('logosmall', true);
+
                 //let logo = this.add.image(0, 0, 'logo');
                 //logo.setPosition(this.cameras.main.centerX, this.cameras.main.centerY);
                 this.imageObject.setScale(4) //resize
@@ -41,7 +64,7 @@
                     targets: this.imageObject,
                     alpha:0,
                     duration: 3000,
-                    ease: 'Linear',
+                    //ease: 'Linear',
                     repeat: 0,
                 });
 
@@ -68,37 +91,93 @@
                 )
                 this.imageObject.setScale(1.5) //resize
 
-                this.add.text(190, 240, "IN A WORLD FULL OF SLIMES");
+                //this.add.text(190, 240, "IN A WORLD FULL OF SLIMES");
+                this.textObject = this.add.text(
+                    170, //x
+                    240,//y
+                    "IN A WORLD FULL OF SLIMES", //text
+                    {
+                        font: "20px Arial",
+                        color: "#ff7700",
+                    } //style
+                );
                 
                 this.tweens.add({
                     targets: this.textObject,
                     alpha:0,
-                    duration: 4000,
+                    duration: 2000,
                     repeat: 0,
-                });
-                
-                this.add.text(190, 240, "ONLY ONE CAN BE KING SLIME");
-            
-                this.tweens.add({
-                    targets: this.textObject,
-                    alpha:0,
-                    duration: 4000,
-                    repeat: 0,
+                    onComplete: () => {
+                        // Add second text after the first text disappears
+                        //this.time.delayedCall(1000, () => {
+                            //this.add.text2(190, 240, "ONLY ONE CAN BE KING SLIME");
+                            this.text2Object = this.add.text(
+                                170, //x
+                                240,//y
+                                "ONLY ONE CAN BE KING SLIME", //text
+                                {
+                                    font: "20px Arial",
+                                    color: "#ff7700",
+                                } //style
+                            );
+                            this.tweens.add({
+                            targets: this.text2Object,
+                            alpha:0,
+                            duration: 2000,
+                            repeat: 0,
+                        //}, null, this);
+                            onComplete: () => {
+                                // Add image after the second text disappears
+                                //this.time.delayedCall(2000, () => {
+                                    this.image2Object = this.add.image(
+                                    320,//x
+                                    240,//y
+                                    'slimeking',//imagename
+                                )
+                                this.imageObject.setScale(1.5) //resize
+                                this.tweens.add({
+                                    targets: this.image2Object,
+                                    alpha:0,
+                                    duration: 4000,
+                                    repeat: 0,
+                                });
+                                //}, null, this);
+                            }
+                        });
+                    }
                 });
 
-                this.imageObject = this.add.image(
-                320,//x
-                240,//y
-                'slimeking',//imagename
-                )
-                this.imageObject.setScale(1.5) //resize
-
-                this.tweens.add({
-                    targets: this.imageObject,
-                    alpha:0,
-                    duration: 4000,
-                    repeat: 0,
-                });
+                //this.add.text(190, 240, "IN A WORLD FULL OF SLIMES");
+                //
+                //this.tweens.add({
+                //    targets: this.textObject,
+                //    alpha:0,
+                //    duration: 4000,
+                //    repeat: 0,
+                //});
+                //
+                //this.add.text(190, 240, "ONLY ONE CAN BE KING SLIME");
+            //
+                //this.tweens.add({
+                //    targets: this.textObject,
+                //    alpha:0,
+                //    duration: 4000,
+                //    repeat: 0,
+                //});
+//
+                //this.imageObject = this.add.image(
+                //320,//x
+                //240,//y
+                //'slimeking',//imagename
+                //)
+                //this.imageObject.setScale(1.5) //resize
+//
+                //this.tweens.add({
+                //    targets: this.imageObject,
+                //    alpha:0,
+                //    duration: 4000,
+                //    repeat: 0,
+                //});
 
                 this.input.on('pointerdown', () => this.scene.start('scene3'));
             }
@@ -171,6 +250,16 @@
                         this.time.delayedCall(500, () => {
                             this.graphics.fillEllipse(450, 200, 200, 100, 5000);   // x, y, width, height, smoothness
                         }, null, this);
+                        //onComplete: () => {
+                        //    //fade speecg instant
+                        //    this.tweens.add({
+                        //        targets: this.imageObject2,
+                        //        x:430,
+                        //        y:410,
+                        //        duration: 4000,
+                        //        ease: 'Linear',
+                        //        repeat: 0,
+                        //    });
                     }
                 });
                 
@@ -181,16 +270,82 @@
                 //this.graphics.fillTriangle(400, 270, 450, 200, 425, 150); //x1, y1, x2, y2, x3, y3
                 //this.graphics.fillEllipse(450, 200, 200, 100, 5000);   // x, y, width, height, smoothness
                 // Define the points of the speech bubble polygon
-
+                this.input.on('pointerdown', () => this.scene.start('scene4'));
 
             }
         }
+        
+        class Scene4 extends Phaser.Scene {
+            constructor() {
+                super('scene4');
+            }
+            preload() {
+                this.load.path = "./assets/";
+                //this.load.image = "logo.png";
+                this.load.image('slimeleak', 'slimeleak.png');
+                //this.load.image('slimR', 'slimR.gif');
+                //this.load.spritesheet('slimR', 'slimR.gif', {
+                this.load.spritesheet('yuh2', 'yuh2.png', {
+                    frameWidth: 180,
+                    frameHeight: 180
+                });
+            }
+            create() {
+                this.cameras.main.setBackgroundColor('0x2a5825');
+
+                this.imageObject = this.add.image(
+                    400,//x
+                    150,//y
+                    'slimeleak',//imagename
+                    )
+                    this.imageObject.setScale(1.5) //resize
+                
+                this.imageObject2 = this.add.sprite(
+                    330,//x
+                    310,//y
+                    'yuh2',//imagename
+                );
+                //this.imageObject2.setScale(0.8); //resize
+                this.anims.create({
+                    key: 'yuh2',
+                    frames: this.anims.generateFrameNumbers('yuh2', {
+                        start: 0,
+                        end: 7
+                    }),
+                    frameRate: 10,
+                    repeat: -1
+                });
+                this.imageObject2.anims.play('yuh2', true);
+
+                this.tweens.add({
+                    targets: this.imageObject2,
+                    x:530,
+                    y:310,
+                    duration: 2000,
+                    ease: 'Linear',
+                    repeat: 0,
+                    onComplete: () => {
+                        this.text3Object = this.add.text(
+                                170, //x
+                                240,//y
+                                "PLAY", //text
+                                {
+                                    font: "20px Arial",
+                                    color: "#ff7700",
+                                } //style
+                            );
+                    }
+                });
+            }
+        }
+
+
         new Phaser.Game( {
             type: Phaser.AUTO,
             width: 640,
             height: 480,
             //backgroundColor: 0x2a5825,
-            scene: [Scene1, Scene2, Scene3],
+            scene: [Scene1, Scene2, Scene3, Scene4],
         });
     </script>
 </body>
