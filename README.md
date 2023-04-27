@@ -35,3 +35,5 @@ Created using pixilart.com
 
 **1+ object motion animation (e.g. sliding in from the side):**  
 - my slime slides in and to the left  
+
+Also if you notice there are two contributors, they are both me, the real c3po is my personal email, bsmit104 is my school email
