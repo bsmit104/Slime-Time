@@ -1,5 +1,8 @@
 # Slime-Time
 
+**PROTOTYPE**  
+https://docs.google.com/presentation/d/1oU_vIzXYW_ddsweX8Pt6TNQ45RF3YNewquYWddCLuSc/edit?usp=sharing  
+
 **3+ distinct visual scenes (with distinct “Scene” classes):**  
 I have 5:  
 - black screen  
