@@ -41,6 +41,24 @@
                 duration: 2000,
                 repeat: -1,
             });
+            
+            this.textObject8 = this.add.text(
+                300, //x
+                270,//y
+                "tap <--- will show\nto indicate tap", //text
+                {
+                    font: "30px Impact",
+                    color: "#FFFFFF",
+                    align: "center"
+                } //style
+            );
+            //textObject0.setAlpha(1);
+            this.tweens.add({
+                targets: this.textObject8,
+                alpha:0,
+                duration: 2000,
+                repeat: -1,
+            });
 
             this.input.on('pointerdown', () => this.scene.start('scene1'));
             }
@@ -101,9 +119,28 @@
                     this.tweens.add({
                         targets: this.imageObject2,
                         alpha:0,
-                        duration: 3000,
+                        duration: 2000,
                         //ease: 'Linear',
                         repeat: 0,
+                        onComplete: () => {
+                            this.textObject8 = this.add.text(
+                                550, //x
+                                420,//y
+                                "tap", //text
+                                {
+                                    font: "30px Impact",
+                                    color: "#00000",
+                                    align: "center"
+                                } //style
+                            );
+                            //textObject0.setAlpha(1);
+                            this.tweens.add({
+                                targets: this.textObject8,
+                                alpha:0,
+                                duration: 2000,
+                                repeat: -1,
+                            });
+                        }
                     });
                 }, null, this);
                 //this.tweens.add({
@@ -156,7 +193,7 @@
                 //this.add.text(190, 240, "IN A WORLD FULL OF SLIMES");
                 this.textObject = this.add.text(
                     130, //x
-                    190,//y
+                    150,//y
                     "IN A WORLD\nFULL OF SLIMES", //text
                     {
                         font: "60px Impact",
@@ -176,7 +213,7 @@
                             //this.add.text2(190, 240, "ONLY ONE CAN BE KING SLIME");
                             this.text2Object = this.add.text(
                                 130, //x
-                                190,//y
+                                150,//y
                                 "ONLY ONE CAN BE\nKING SLIME", //text
                                 {
                                     font: "60px Impact",
@@ -203,20 +240,36 @@
                                 this.tweens.add({
                                     targets: this.image2Object,
                                     alpha:0,
-                                    duration: 3000,
+                                    duration: 2000,
                                     repeat: 0,
                                 });
                                 this.tweens.add({
                                     targets: this.image3Object,
                                     alpha:0,
-                                    duration: 3000,
+                                    duration: 2000,
                                     repeat: 0,
-                                });
-                                //onComplete: () => {
-                                    
-                                //}
                                 
-                                //}, null, this);
+                                    //////////////TAP BUTTON/////////////////
+                                    onComplete: () => {
+                                        this.textObject8 = this.add.text(
+                                            550, //x
+                                            420,//y
+                                            "tap", //text
+                                            {
+                                                font: "30px Impact",
+                                                color: "#00000",
+                                                align: "center"
+                                            } //style
+                                        );
+                                        //textObject0.setAlpha(1);
+                                        this.tweens.add({
+                                            targets: this.textObject8,
+                                            alpha:0,
+                                            duration: 2000,
+                                            repeat: -1,
+                                        });
+                                    }
+                                });
                             }
                         });
                     }
@@ -329,6 +382,23 @@
                             let text = "That's me!";
                             let style = { font: "32px Arial", fill: "#000000"};
                             let textObject = this.add.text(380, 190, text, style);
+                                this.textObject8 = this.add.text(
+                                    550, //x
+                                    420,//y
+                                    "tap", //text
+                                    {
+                                        font: "30px Impact",
+                                        color: "#00000",
+                                        align: "center"
+                                    } //style
+                                );
+                                //textObject0.setAlpha(1);
+                                this.tweens.add({
+                                    targets: this.textObject8,
+                                    alpha:0,
+                                    duration: 2000,
+                                    repeat: -1,
+                                });
                         }, null, this);
                         //onComplete: () => {
                         //    //fade speecg instant
@@ -341,6 +411,25 @@
                         //        repeat: 0,
                         //    });
                     }
+                    //onComplete: () => {
+                    //    this.textObject8 = this.add.text(
+                    //        300, //x
+                    //        240,//y
+                    //        "tap", //text
+                    //        {
+                    //            font: "30px Impact",
+                    //            color: "#00000",
+                    //            align: "center"
+                    //        } //style
+                    //    );
+                    //    //textObject0.setAlpha(1);
+                    //    this.tweens.add({
+                    //        targets: this.textObject8,
+                    //        alpha:0,
+                    //        duration: 2000,
+                    //        repeat: -1,
+                    //    });
+                    //}
                 });
                 
                 
